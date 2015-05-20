@@ -1,3 +1,7 @@
+app_personlikeproduct:
+    resource: "@AppBundle/Resources/config/routing/personlikeproduct.yml"
+    prefix:   /personlikeproduct
+
 app_product:
     resource: "@AppBundle/Resources/config/routing/product.yml"
     prefix:   /product
@@ -5,4 +9,5 @@ app_product:
 app_person:
     resource: "@AppBundle/Resources/config/routing/person.yml"
     prefix:   /person
+
 

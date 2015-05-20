@@ -12,10 +12,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Product
 {
-	/**
-     * @ORM\ManyToMany(targetEntity="Person", mappedBy="likedProducts")
+	
+    /**
+     * @ORM\OneToMany(targetEntity="PersonLikeProduct", mappedBy="product")
+     * 
      **/
-    private $peopleWhoLikeThis;
+    private $likes;
 	
     /**
      * @var integer
@@ -165,5 +167,42 @@ class Product
     public function getPeopleWhoLikeThis()
     {
         return $this->peopleWhoLikeThis;
+    }
+
+    /**
+     * Add likes
+     *
+     * @param \AppBundle\Entity\PersonLikeProduct $likes
+     * @return Product
+     */
+    public function addLike(\AppBundle\Entity\PersonLikeProduct $likes)
+    {
+        $this->likes[] = $likes;
+
+        return $this;
+    }
+
+    /**
+     * Remove likes
+     *
+     * @param \AppBundle\Entity\PersonLikeProduct $likes
+     */
+    public function removeLike(\AppBundle\Entity\PersonLikeProduct $likes)
+    {
+        $this->likes->removeElement($likes);
+    }
+
+    /**
+     * Get likes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getLikes()
+    {
+        return $this->likes;
+    }
+    
+    public function __toString() {
+        return $this->name;
     }
 }

@@ -23,7 +23,17 @@
             </tr>
             <tr>
                 <th>State</th>
-                <td>{{ entity.state }}</td>
+                <td>
+                    
+                    {% if entity.state == getParam('state_active') %}
+                    {{ getParam('state_active_name') }}
+                   {% elseif entity.state == getParam('state_banned') %}
+                       {{ getParam('state_banned_name') }}
+                   {% elseif entity.state == getParam('state_removed') %}
+                       {{ getParam('state_removed_name') }}
+                   {% endif %}
+                    
+                </td>
             </tr>
         </tbody>
     </table>

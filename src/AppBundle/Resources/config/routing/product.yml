@@ -1,6 +1,14 @@
 product:
     path:     /
     defaults: { _controller: "AppBundle:Product:index" }
+    
+product_find_ajax:
+    path:     /find_ajax
+    defaults: { _controller: "AppBundle:Product:getProductAjax" }
+    
+product_list_ajax:
+    path:     /list_ajax
+    defaults: { _controller: "AppBundle:Product:searchProductAjax" }
 
 product_show:
     path:     /{id}/show

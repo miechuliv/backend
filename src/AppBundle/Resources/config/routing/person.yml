@@ -1,6 +1,14 @@
 person:
     path:     /
     defaults: { _controller: "AppBundle:Person:index" }
+    
+person_find_ajax:
+    path:     /find_ajax
+    defaults: { _controller: "AppBundle:Person:getPersonAjax" }
+    
+person_list_ajax:
+    path:     /list_ajax
+    defaults: { _controller: "AppBundle:Person:searchPersonAjax" }
 
 person_show:
     path:     /{id}/show

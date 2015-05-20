@@ -7,3 +7,10 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+
+    app.param_fetcher_extension:
+        class: AppBundle\Twig\ParamFetcherExtension
+        public: false
+        arguments: ['@service_container']
+        tags:
+            - { name: twig.extension }

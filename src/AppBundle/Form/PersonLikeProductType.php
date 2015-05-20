@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ProductType extends AbstractType
+class PersonLikeProductType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,14 +15,8 @@ class ProductType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('info')
-            ->add('publicDate','date',array(
-                'widget' => 'single_text',
-                'format' => 'yyyy-MM-dd',
-                'attr' => array('class' => 'date')
-            ))
-            
+            ->add('person', 'autocomplete', array('class' => 'AppBundle:Person'))
+            ->add('product', 'autocomplete', array('class' => 'AppBundle:Product'))
         ;
     }
     
@@ -32,7 +26,7 @@ class ProductType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Product'
+            'data_class' => 'AppBundle\Entity\PersonLikeProduct'
         ));
     }
 
@@ -41,6 +35,6 @@ class ProductType extends AbstractType
      */
     public function getName()
     {
-        return 'appbundle_product';
+        return 'appbundle_personlikeproduct';
     }
 }

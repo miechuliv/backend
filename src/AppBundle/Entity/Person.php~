@@ -12,11 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Person
 {
-	/**
-     * @ORM\ManyToMany(targetEntity="Product", inversedBy="peopleWhoLikeThis")
-     * @ORM\JoinTable(name="people_like_product")
+    /**
+     * @ORM\OneToMany(targetEntity="PersonLikeProduct", mappedBy="person")
+     * 
      **/
-    private $likedProducts;
+    private $likes;
 	
     /**
      * @var integer

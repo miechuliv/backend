@@ -8,18 +8,32 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class PersonType extends AbstractType
 {
+    
+    private $_stateChoices;
+
+    public function __construct($stateChoices){
+        $this->_stateChoices = $stateChoices;
+    }
+    
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        if(empty($this->_stateChoices))
+        {
+            throw new \Exception('person state array is empty');
+        }
+        
         $builder
             ->add('login')
             ->add('lName')
             ->add('fName')
-            ->add('state')
-            ->add('likedProducts')
+            ->add('state','choice',array(
+                'choices' => $this->_stateChoices,
+            ))
+            
         ;
     }
     

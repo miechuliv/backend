@@ -8,13 +8,40 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\Person;
 use AppBundle\Form\PersonType;
 
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 /**
  * Person controller.
  *
  */
 class PersonController extends Controller
 {
+    
+    public function searchPersonAjaxAction(Request $request)
+    {
+        $q = $request->get('term');
+        $em = $this->getDoctrine()->getManager();
+        $results = $em->getRepository('AppBundle:Person')->findLikeName($q);
 
+        $resultArray = array();
+        foreach($results as $result)
+        {
+            $resultArray[$result->getId()] = $result->__toString();
+        }
+        
+        
+        return new JsonResponse( $resultArray ); 
+    }
+    
+    public function getPersonAjaxAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $person = $em->getRepository('AppBundle:Person')->find($id);
+
+        return new Response($person->getName());
+    }
+    
     /**
      * Lists all Person entities.
      *
@@ -62,7 +89,14 @@ class PersonController extends Controller
      */
     private function createCreateForm(Person $entity)
     {
-        $form = $this->createForm(new PersonType(), $entity, array(
+        $form = $this->createForm(new PersonType(
+                    array(
+                        $this->container->getParameter('state_active') => $this->container->getParameter('state_active_name'),
+                        $this->container->getParameter('state_banned') => $this->container->getParameter('state_banned_name'),
+                        $this->container->getParameter('state_removed') => $this->container->getParameter('state_removed_name'),
+                    )
+                ),
+                $entity, array(
             'action' => $this->generateUrl('person_create'),
             'method' => 'POST',
         ));
@@ -142,7 +176,14 @@ class PersonController extends Controller
     */
     private function createEditForm(Person $entity)
     {
-        $form = $this->createForm(new PersonType(), $entity, array(
+        $form = $this->createForm(new PersonType(
+                    array(
+                        $this->container->getParameter('state_active') => $this->container->getParameter('state_active_name'),
+                        $this->container->getParameter('state_banned') => $this->container->getParameter('state_banned_name'),
+                        $this->container->getParameter('state_removed') => $this->container->getParameter('state_removed_name'),
+                    )
+                ),
+                $entity, array(
             'action' => $this->generateUrl('person_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
@@ -198,7 +239,9 @@ class PersonController extends Controller
                 throw $this->createNotFoundException('Unable to find Person entity.');
             }
 
-            $em->remove($entity);
+            //$em->remove($entity);
+            $entity->setState($this->container->getParameter('state_removed'));
+            $em->persist($entity);
             $em->flush();
         }
 

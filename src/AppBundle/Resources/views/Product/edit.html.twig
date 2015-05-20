@@ -14,3 +14,19 @@
     <li>{{ form(delete_form) }}</li>
 </ul>
 {% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+    $(document).ready(function(){
+      
+            
+            $( "#appbundle_product_publicDate" ).datepicker({
+                dateFormat: "yy-mm-dd"
+            });
+         
+    })
+   
+  </script>
+{% endblock %}  

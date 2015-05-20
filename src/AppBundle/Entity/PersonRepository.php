@@ -12,4 +12,16 @@ use Doctrine\ORM\EntityRepository;
  */
 class PersonRepository extends EntityRepository
 {
+    public function findLikeName($name)
+    {
+        $qb = $this->createQueryBuilder('p');
+        $results = $qb->where(
+                 $qb->expr()->like('p.fName', ':name')
+             )
+             ->setParameter(':name','%'.$name.'%')
+             ->getQuery()
+             ->getResult();
+        
+        return $results;
+    }
 }

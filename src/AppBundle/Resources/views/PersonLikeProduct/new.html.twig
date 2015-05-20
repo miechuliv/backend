@@ -1,0 +1,29 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>PersonLikeProduct creation</h1>
+
+    {{ form(form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('personlikeproduct') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}
+
+
+{% block javascripts %}
+    
+    {{ parent() }}
+    <script type="text/javascript">
+            $('#appbundle_personlikeproduct_person').autocompleter({url_list: '{{ path('person_list_ajax') }}',
+                url_get: '{{ path('person_find_ajax') }}' });
+            
+            $('#appbundle_personlikeproduct_product').autocompleter({url_list: '{{ path('product_list_ajax') }}',
+                url_get: '{{ path('product_find_ajax') }}' });
+        </script>
+    
+    {% endblock %}

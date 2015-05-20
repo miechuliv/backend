@@ -21,7 +21,16 @@
                 <td>{{ entity.login }}</td>
                 <td>{{ entity.lName }}</td>
                 <td>{{ entity.fName }}</td>
-                <td>{{ entity.state }}</td>
+                <td>
+                   {% if entity.state == getParam('state_active') %}
+                    {{ getParam('state_active_name') }}
+                   {% elseif entity.state == getParam('state_banned') %}
+                       {{ getParam('state_banned_name') }}
+                   {% elseif entity.state == getParam('state_removed') %}
+                       {{ getParam('state_removed_name') }}
+                   {% endif %}
+                    
+                </td>
                 <td>
                 <ul>
                     <li>

@@ -14,11 +14,18 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+        {% block topnav %}
+            <a href="{{ path('product') }}">Produkty</a>
+            <a href="{{ path('person') }}">Osoby</a>
+            <a href="{{ path('personlikeproduct') }}">Osoby lubią produkty</a>
+            
+        {% endblock %}
         {% block body %}{% endblock %}
         {% block javascripts %}
 			{% javascripts
 			'@AppBundle/Resources/public/js/jquery-1.11.3.min.js'
 			'@AppBundle/Resources/public/js/jquery-ui-1.11.4/jquery-ui.min.js'
+                        '@PUGXAutocompleterBundle/Resources/public/js/autocompleter-jqueryui.js'
 			
 			%}
 				<script type="text/javascript" src="{{ asset_url }}"></script>

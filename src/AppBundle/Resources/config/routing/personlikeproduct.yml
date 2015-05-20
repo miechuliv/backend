@@ -1,0 +1,30 @@
+personlikeproduct:
+    path:     /
+    defaults: { _controller: "AppBundle:PersonLikeProduct:index" }
+
+personlikeproduct_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:PersonLikeProduct:show" }
+
+personlikeproduct_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:PersonLikeProduct:new" }
+
+personlikeproduct_create:
+    path:     /create
+    defaults: { _controller: "AppBundle:PersonLikeProduct:create" }
+    methods:  POST
+
+personlikeproduct_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:PersonLikeProduct:edit" }
+
+personlikeproduct_update:
+    path:     /{id}/update
+    defaults: { _controller: "AppBundle:PersonLikeProduct:update" }
+    methods:  [POST, PUT]
+
+personlikeproduct_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:PersonLikeProduct:delete" }
+    methods:  [POST, DELETE]

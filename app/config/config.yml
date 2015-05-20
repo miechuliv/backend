@@ -76,3 +76,7 @@ parameters:
     state_active: 1
     state_banned: 2
     state_removed: 3
+    
+    state_active_name: Aktywny
+    state_banned_name: Zbanowany
+    state_removed_name: Usuniety
