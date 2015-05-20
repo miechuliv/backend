@@ -14,3 +14,16 @@
     <li>{{ form(delete_form) }}</li>
 </ul>
 {% endblock %}
+
+{% block javascripts %}
+    
+    {{ parent() }}
+    <script type="text/javascript">
+            $('#appbundle_personlikeproduct_person').autocompleter({url_list: '{{ path('person_list_ajax' ) }}',
+                url_get: '{{ path('person_find_ajax') }}?id=' });
+            
+            $('#appbundle_personlikeproduct_product').autocompleter({url_list: '{{ path('product_list_ajax') }}',
+                url_get: '{{ path('product_find_ajax') }}?id=' });
+        </script>
+    
+    {% endblock %}

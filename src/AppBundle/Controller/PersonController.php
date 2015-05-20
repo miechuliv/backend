@@ -27,19 +27,22 @@ class PersonController extends Controller
         $resultArray = array();
         foreach($results as $result)
         {
-            $resultArray[$result->getId()] = $result->__toString();
+            $resultArray[] = array(
+                'id' => $result->getId(),
+                'label' =>$result->__toString(),
+                );
         }
         
         
         return new JsonResponse( $resultArray ); 
     }
     
-    public function getPersonAjaxAction($id)
+    public function getPersonAjaxAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $person = $em->getRepository('AppBundle:Person')->find($id);
+        $person = $em->getRepository('AppBundle:Person')->find($request->query->get('id'));
 
-        return new Response($person->getName());
+        return new Response($person->getFName());
     }
     
     /**

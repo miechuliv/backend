@@ -19,7 +19,7 @@
     
     {{ parent() }}
     <script type="text/javascript">
-            $('#appbundle_personlikeproduct_person').autocompleter({url_list: '{{ path('person_list_ajax') }}',
+            $('#appbundle_personlikeproduct_person').autocompleter({url_list: '{{ path('person_list_ajax' ) }}',
                 url_get: '{{ path('person_find_ajax') }}' });
             
             $('#appbundle_personlikeproduct_product').autocompleter({url_list: '{{ path('product_list_ajax') }}',

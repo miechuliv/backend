@@ -38,10 +38,14 @@ class PersonLikeProductController extends Controller
         $entity = new PersonLikeProduct();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
+        
+        
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+          
             $em->persist($entity);
+            
             $em->flush();
 
             return $this->redirect($this->generateUrl('personlikeproduct_show', array('id' => $entity->getId())));

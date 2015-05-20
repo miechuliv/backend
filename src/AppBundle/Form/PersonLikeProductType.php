@@ -15,8 +15,8 @@ class PersonLikeProductType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('person', 'autocomplete', array('class' => 'AppBundle:Person'))
-            ->add('product', 'autocomplete', array('class' => 'AppBundle:Product'))
+            ->add('person', 'autocomplete', array('class' => 'AppBundle:Person', 'required' => false))
+            ->add('product', 'autocomplete', array('class' => 'AppBundle:Product', 'required' => false))
         ;
     }
     

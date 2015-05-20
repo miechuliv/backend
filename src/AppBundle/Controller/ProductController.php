@@ -27,17 +27,20 @@ class ProductController extends Controller
         $resultArray = array();
         foreach($results as $result)
         {
-            $resultArray[$result->getId()] = $result->__toString();
+            $resultArray[] = array(
+                'id' => $result->getId(),
+                'label' =>$result->__toString(),
+                );
         }
         
         
         return new JsonResponse( $resultArray ); 
     }
     
-    public function getProductAjaxAction($id)
+    public function getProductAjaxAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $person = $em->getRepository('AppBundle:Product')->find($id);
+        $person = $em->getRepository('AppBundle:Product')->find($request->query->get('id'));
 
         return new Response($person->getName());
     }

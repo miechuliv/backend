@@ -1,0 +1,7 @@
+AppBundle\Entity\PersonLikeProduct:
+    properties:
+        person:
+            - NotBlank: ~
+            
+        product:
+            - NotBlank: ~

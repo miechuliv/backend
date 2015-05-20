@@ -14,13 +14,13 @@ class PersonLikeProduct
 {
     
     /**
-     * @ORM\ManyToOne(targetEntity="Person", inversedBy="likes")
+     * @ORM\ManyToOne(targetEntity="Person", inversedBy="likes", cascade={"persist"})
      * @ORM\JoinColumn(name="person_id", referencedColumnName="id")
      **/
     private $person;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Product", inversedBy="likes")
+     * @ORM\ManyToOne(targetEntity="Product", inversedBy="likes", cascade={"persist"})
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
      **/
     private $product;

@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Person
 {
     /**
-     * @ORM\OneToMany(targetEntity="PersonLikeProduct", mappedBy="person")
+     * @ORM\OneToMany(targetEntity="PersonLikeProduct", mappedBy="person",  cascade={"persist"})
      * 
      **/
     private $likes;

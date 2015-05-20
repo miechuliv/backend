@@ -14,7 +14,7 @@ class Product
 {
 	
     /**
-     * @ORM\OneToMany(targetEntity="PersonLikeProduct", mappedBy="product")
+     * @ORM\OneToMany(targetEntity="PersonLikeProduct", mappedBy="product", cascade={"persist","remove"})
      * 
      **/
     private $likes;
