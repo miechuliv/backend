@@ -71,3 +71,8 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+parameters:
+    state_active: 1
+    state_banned: 2
+    state_removed: 3
